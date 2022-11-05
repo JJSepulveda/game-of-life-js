@@ -2,11 +2,16 @@ console.log("se agrego un archivo de javascript correctametne")
 
 // Nodos
 const gridSection = document.querySelector(".game-grid");
+const buttonContainer = document.querySelector(".buttons__startStop")
 const playButton = document.querySelector(".buttons__play-button")
+const stopButton = document.querySelector(".buttons__stop-button")
+
+playButton.addEventListener("click", start_game);
+stopButton.addEventListener("click", stop_game);
 
 // Constantes
-const ROWS = 5;
-const COLS = 5;
+const ROWS = 10;
+const COLS = 10;
 const cell_rows = new Array(ROWS).fill([]);
 
 // Variables
@@ -160,9 +165,6 @@ function get_previous_column(columnIndex) {
 function get_next_column(columnIndex) {
 	let nextColumn = columnIndex + 1 ;
 	const lastColumn = COLS - 1;
-	console.log("column", columnIndex)
-	console.log("next column", nextColumn)
-	console.log("lastColumn column", lastColumn)
 	// Am I in the last column?
 	if (columnIndex === lastColumn) {
 		const firstColumn = 0;
@@ -196,7 +198,6 @@ function neighbours_count(rowIndex, columnIndex){
 		[nextRow, columnIndex],
 		[nextRow, nextColumn],
 	]
-	console.log(neighboursList)
 
 	const counter = neighboursList.reduce((acumulator, element) => {
 		acumulator += Number(cells[element[0]][element[1]]);
@@ -216,8 +217,8 @@ function update_cell(rowIndex, columnIndex) {
 	const actualValue = cells[rowIndex][columnIndex];
 	const neighboursCounter = neighbours_count(rowIndex, columnIndex);
 
-	element = document.getElementById(`${rowIndex}-${columnIndex}`)
-	element.innerHTML = '' + neighboursCounter
+	//element = document.getElementById(`${rowIndex}-${columnIndex}`)
+	//element.innerHTML = '' + neighboursCounter
 
 	if (!actualValue && neighboursCounter === 3) {
 		//console.log('revive', rowIndex, columnIndex)
@@ -230,7 +231,6 @@ function update_cell(rowIndex, columnIndex) {
 	}
 
 	if (neighboursCounter <= 1){
-		console.log('Muere por soledad', rowIndex, columnIndex)
 		return false;
 	}
 
@@ -264,8 +264,27 @@ function update_cells() {
 	cells = cellsCopy;
 }
 
+// variable to store our intervalID
+let nIntervId;
+
 /**
-* Update the cell with css classes
+* Start or stop the game
+* https://developer.mozilla.org/en-US/docs/Web/API/setInterval
 */
-function set_the_cell_style() {
+function start_game() {
+	// check if an interval has already been set up
+	if (!nIntervId) {
+		nIntervId = setInterval(update_cells, 500);
+		stopButton.removeAttribute("hidden"); 
+		playButton.setAttribute("hidden", '');
+	}
+}
+
+function stop_game() {
+	clearInterval(nIntervId);
+	// release our intervalID from the variable
+	nIntervId = null;
+	playButton.removeAttribute("hidden"); 
+	stopButton.setAttribute("hidden", '');
+	console.log('play')
 }
