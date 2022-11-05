@@ -104,6 +104,7 @@ body {
 
 .alive {
 	background: var(--clr-alive) !important;
+	color: red !important;
 }
 
 .dead {

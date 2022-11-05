@@ -5,8 +5,8 @@ const gridSection = document.querySelector(".game-grid");
 const playButton = document.querySelector(".buttons__play-button")
 
 // Constantes
-const ROWS = 15;
-const COLS = 20;
+const ROWS = 5;
+const COLS = 5;
 const cell_rows = new Array(ROWS).fill([]);
 
 // Variables
@@ -94,4 +94,178 @@ function toggle_state_and_set_style(itemButton){
 	[row, column] = get_cell_id(itemButton.id)
 	toggle_cell_state(itemButton.id);
 	set_cell_style(itemButton, cells[row][column]);
+}
+//********************************************************
+// CELL LOGIC
+//********************************************************
+
+/**
+* Get the previous row
+* @param {number} rowIndex - the row index of the actual cell
+* @return {number} previousRow - The index of the previous row
+*/
+function get_previous_row(rowIndex) {
+	let previousRow = rowIndex - 1;
+	const firstRow = 0;
+		
+	// Am I in the first row?
+	if (rowIndex === firstRow) {
+		const last_row = ROWS - 1;
+		previousRow = last_row;
+	}
+
+	return previousRow;
+}
+
+/**
+* Get the next row
+* @param {number} rowIndex - the row index of the actual cell
+* @return {number} nextRow - The index of the next row
+*/
+function get_next_row(rowIndex) {
+	let nextRow = rowIndex + 1 ;
+	const lastRow = ROWS - 1;
+
+	// Am I in the last row?
+	if (rowIndex === lastRow) {
+		nextRow = 0;
+	}
+
+	return nextRow;
+}
+
+/**
+* Get the previous column
+* @param {number} columnIndex - the column index of the actual cell
+* @return {number} previousColumn - The previous column index
+*/
+function get_previous_column(columnIndex) {
+	let previousColumn = columnIndex - 1 ;
+	const firstColumn = 0;
+
+	// Am I in the first column?
+	if (columnIndex === firstColumn) {
+		const lastColumn = COLS - 1;
+		previousColumn = lastColumn;
+	}
+
+	return previousColumn;
+}
+
+/**
+* Get the next column
+* @param {number} columnIndex - the column index of the actual cell
+* @return {number} nextColumn - The next column index
+*/
+function get_next_column(columnIndex) {
+	let nextColumn = columnIndex + 1 ;
+	const lastColumn = COLS - 1;
+	console.log("column", columnIndex)
+	console.log("next column", nextColumn)
+	console.log("lastColumn column", lastColumn)
+	// Am I in the last column?
+	if (columnIndex === lastColumn) {
+		const firstColumn = 0;
+		nextColumn = firstColumn;
+	}
+
+	return nextColumn;
+}
+
+/**
+* Count the number of cell neighbours alive
+* @param {number} rowIndex - the row index of the actual cell
+* @param {number} columnIndex - the column index of the actual cell
+* @return {number} counter - The amount of cell neighbours alive
+*/
+function neighbours_count(rowIndex, columnIndex){
+	const previousRow = get_previous_row(rowIndex);
+	const nextRow = get_next_row(rowIndex);
+	const previousColumn = get_previous_column(columnIndex);
+	const nextColumn = get_next_column(columnIndex);
+	const neighboursList = [
+		// Previous
+		[previousRow, previousColumn],
+		[previousRow, columnIndex],
+		[previousRow, nextColumn],
+		// Middle
+		[rowIndex, previousColumn],
+		[rowIndex, nextColumn],
+		// Next
+		[nextRow, previousColumn],
+		[nextRow, columnIndex],
+		[nextRow, nextColumn],
+	]
+	console.log(neighboursList)
+
+	const counter = neighboursList.reduce((acumulator, element) => {
+		acumulator += Number(cells[element[0]][element[1]]);
+		return acumulator;
+	}, 0)
+
+	return counter
+}
+
+/**
+* Update the state of an individual cell
+* @param {number} rowIndex - the row index of the actual cell
+* @param {number} columnIndex - the colum index of the actual cell
+* @return {bool} newValue - The new value of the cell
+*/
+function update_cell(rowIndex, columnIndex) {
+	const actualValue = cells[rowIndex][columnIndex];
+	const neighboursCounter = neighbours_count(rowIndex, columnIndex);
+
+	element = document.getElementById(`${rowIndex}-${columnIndex}`)
+	element.innerHTML = '' + neighboursCounter
+
+	if (!actualValue && neighboursCounter === 3) {
+		//console.log('revive', rowIndex, columnIndex)
+		return true;
+	}
+
+	if (!actualValue) {
+		//console.log('estaba muerta, se queda muerta', rowIndex, columnIndex)
+		return actualValue;
+	}
+
+	if (neighboursCounter <= 1){
+		console.log('Muere por soledad', rowIndex, columnIndex)
+		return false;
+	}
+
+	if (neighboursCounter >= 4){
+		//console.log('Muere por sobrepoblación', rowIndex, columnIndex)
+		return false;	
+	}
+	//console.group(`${rowIndex}${columnIndex}`)
+	//console.log(neighboursCounter)
+	//console.log('Estaba viva y se mantiene viva', rowIndex, columnIndex)
+	//console.groupEnd(`${rowIndex}${columnIndex}`)
+	return actualValue;
+}
+
+/**
+* Update the state of each cell
+*/
+function update_cells() {
+	const cellsCopy = cells.map((rowsCells, rowIndex) => {
+		const newCellRows = rowsCells.map((cell, columnIndex) => {
+			newCellValue = update_cell(rowIndex, columnIndex)
+			// update de style
+			element = document.getElementById(`${rowIndex}-${columnIndex}`)
+			set_cell_style(element, newCellValue)
+			return newCellValue;
+		})
+		
+		return newCellRows;
+	})
+
+	cells = cellsCopy;
+}
+
+/**
+* Update the cell with css classes
+*/
+function set_the_cell_style() {
 }
