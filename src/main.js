@@ -1,13 +1,15 @@
-console.log("se agrego un archivo de javascript correctametne")
+console.log("se agrego un archivo de javascript correctametne");
 
 // Nodos
 const gridSection = document.querySelector(".game-grid");
-const buttonContainer = document.querySelector(".buttons__startStop")
-const playButton = document.querySelector(".buttons__play-button")
-const stopButton = document.querySelector(".buttons__stop-button")
+const buttonContainer = document.querySelector(".buttons__startStop");
+const playButton = document.querySelector(".buttons__play-button");
+const stopButton = document.querySelector(".buttons__stop-button");
+const eraseButton = document.getElementById("erase-btn");
 
 playButton.addEventListener("click", start_game);
 stopButton.addEventListener("click", stop_game);
+eraseButton.addEventListener("click", clear_grid);
 
 // Constantes
 const ROWS = 20;
@@ -253,8 +255,7 @@ function update_cells() {
 		const newCellRows = rowsCells.map((cell, columnIndex) => {
 			newCellValue = update_cell(rowIndex, columnIndex)
 			// update de style
-			element = document.getElementById(`${rowIndex}-${columnIndex}`)
-			set_cell_style(element, newCellValue)
+			update_cell_style(rowIndex, columnIndex, newCellValue);
 			return newCellValue;
 		})
 		
@@ -268,7 +269,7 @@ function update_cells() {
 let nIntervId;
 
 /**
-* Start or stop the game
+* Start the game
 * https://developer.mozilla.org/en-US/docs/Web/API/setInterval
 */
 function start_game() {
@@ -280,6 +281,10 @@ function start_game() {
 	}
 }
 
+/**
+* Stop the game
+* https://developer.mozilla.org/en-US/docs/Web/API/setInterval
+*/
 function stop_game() {
 	clearInterval(nIntervId);
 	// release our intervalID from the variable
@@ -287,4 +292,28 @@ function stop_game() {
 	playButton.removeAttribute("hidden"); 
 	stopButton.setAttribute("hidden", '');
 	console.log('play')
+}
+
+/**
+ * Update the cell style
+ * @param {number} rowIndex -
+ * @param {number} columnIndex -
+*/
+function update_cell_style(rowIndex, columnIndex, newCellValue){
+	element = document.getElementById(`${rowIndex}-${columnIndex}`)
+	set_cell_style(element, newCellValue)
+}
+
+/**
+ * Erasing all elements in the grid
+*/
+function clear_grid() {
+	newCells = cells.map((rowsCells, rowIndex) => {
+		return rowsCells.map((_, columnIndex) => {
+			update_cell_style(rowIndex, columnIndex, false)
+			return false;
+		})
+	});
+
+	cells = newCells;
 }
