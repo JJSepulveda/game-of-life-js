@@ -11,7 +11,8 @@ Este modelo se basa en unas pocas reglas que define el comportamiento de las “
 
 ## Mockup
 
-![Untitled](https://ibb.co/PWWtTwX)
+![Untitled](https://i.ibb.co/fNNQ846/Untitled.png)
+
 
 
 ## Lógica
@@ -37,7 +38,7 @@ Caso 2: La célula está viva.
 
 Diagrama de flujo para determinar el estado de la célula:
 
-![Untitled](https://ibb.co/y5z1NNj)
+![Untitled](https://i.ibb.co/jL3jNVJ/Diagrama-para-determinar-el-estado-de-la-celula.png)
 
 ### Contar vecinos
 
@@ -52,6 +53,6 @@ pseudocódigo:
 
 Diagrama de flujo para contar las células vecinas vivas:
 
-![filas flow.png](https://ibb.co/mBpPkVS)
+![filas flow.png](https://i.ibb.co/CtLSg3W/filas-flow-1.png)
 
-![columnas flow.drawio.png](https://ibb.co/dQkHTbm)
+![columnas flow.drawio.png](https://i.ibb.co/zb3Ymmv/columnas-flow-drawio-1.png)
