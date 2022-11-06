@@ -31,13 +31,16 @@
 					<button class="buttons__play-button btn btn-outline-primary"><i class='bx bx-play-circle bx-md'></i></button>
 					<button class="buttons__stop-button btn btn-outline-primary" hidden><i class='bx bx-stop-circle bx-md'></i></button>
 					<a href="#" class="btn btn-outline-secondary">?</a>
+					<button type="button" class="btn btn-outline-secondary examples-menu-button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  						<i class='bx bx-menu'></i>
+					</button>
 					<p class="mt-3" id="counter">0</p>
 				</section>
 			</section>
 			<section class="aside-menu col-md-3">
 				<h2 class="fs-2 mt-5 mb-2">Intenta con esto</h2>
 				<p>
-					Algunos patrones de comportamiento que puedes probar.
+					Algunos patrones que puedes probar.
 				</p>
 				<h3 class="fs-3 mt-4 mb-2">Osciladores</h2>
 				<img src="https://upload.wikimedia.org/wikipedia/commons/1/1c/Game_of_life_beacon.gif">
@@ -52,6 +55,43 @@
 				<img src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Game_of_life_boat.svg">
 			</section>
 		</section>
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content backgroud-background">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Algunos patrones que puedes probar.</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <section class="">
+				<h2 class="fs-2 mt-5 mb-2">Intenta con esto</h2>
+				<p>
+					Algunos patrones que puedes probar.
+				</p>
+				<h3 class="fs-3 mt-4 mb-2">Osciladores</h2>
+				<img src="https://upload.wikimedia.org/wikipedia/commons/1/1c/Game_of_life_beacon.gif">
+				<img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Game_of_life_blinker.gif">
+				<img src="https://upload.wikimedia.org/wikipedia/commons/1/12/Game_of_life_toad.gif">
+				<h3 class="fs-3 mt-4 mb-2">Naves espaciales</h2>
+				<img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Game_of_life_animated_glider.gif">
+				<img src="https://upload.wikimedia.org/wikipedia/commons/3/37/Game_of_life_animated_LWSS.gif">
+				<h3 class="fs-3 mt-4 mb-2">Parece que no hace nada</h2>
+				<img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Game_of_life_block_with_border.svg">
+				<img src="https://upload.wikimedia.org/wikipedia/commons/6/67/Game_of_life_beehive.svg">
+				<img src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Game_of_life_boat.svg">
+			</section>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 		<section class="footer-section">
 			<div class="container">
 				<h2 class="mt-1">

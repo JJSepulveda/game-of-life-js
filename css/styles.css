@@ -177,3 +177,21 @@ body {
 	color: var(--clr-titles);
 }
 
+/* Modals */
+.backgroud-background {
+	background: var(--clr-background);
+}
+
+.examples-menu-button {
+	display: none;
+}		
+
+/* Media queryes */
+@media only screen and (max-width: 768px) {
+	.aside-menu {
+		display: none;
+	}
+	.examples-menu-button {
+		display: inline-block;
+	}
+}
