@@ -6,6 +6,7 @@ const buttonContainer = document.querySelector(".buttons__startStop");
 const playButton = document.querySelector(".buttons__play-button");
 const stopButton = document.querySelector(".buttons__stop-button");
 const eraseButton = document.getElementById("erase-btn");
+const counterP = document.getElementById("counter")
 
 playButton.addEventListener("click", start_game);
 stopButton.addEventListener("click", stop_game);
@@ -22,6 +23,7 @@ let cells = cell_rows.map(() => {
 	// esto parece funcionar :D
 	return new Array(COLS).fill(false);
 })
+let counter = 0;
 
 // source code
 /**
@@ -263,6 +265,9 @@ function update_cells() {
 	})
 
 	cells = cellsCopy;
+
+	// This is only a visual guide for the user in order to know the game is running
+	update_counter();
 }
 
 // variable to store our intervalID
@@ -296,8 +301,8 @@ function stop_game() {
 
 /**
  * Update the cell style
- * @param {number} rowIndex -
- * @param {number} columnIndex -
+ * @param {number} rowIndex - the row index of the actual cell
+ * @param {number} columnIndex - the colum index of the actual cell
 */
 function update_cell_style(rowIndex, columnIndex, newCellValue){
 	element = document.getElementById(`${rowIndex}-${columnIndex}`)
@@ -316,4 +321,13 @@ function clear_grid() {
 	});
 
 	cells = newCells;
+}
+
+
+/**
+ * Update the counter in js and html. This is only a visual guide to know the game is running.
+ * */
+function update_counter() {
+	counter += 1;
+	counterP.innerHTML = '' + counter
 }
