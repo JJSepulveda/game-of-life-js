@@ -10,8 +10,8 @@ playButton.addEventListener("click", start_game);
 stopButton.addEventListener("click", stop_game);
 
 // Constantes
-const ROWS = 10;
-const COLS = 10;
+const ROWS = 20;
+const COLS = 30;
 const cell_rows = new Array(ROWS).fill([]);
 
 // Variables
