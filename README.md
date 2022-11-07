@@ -1,5 +1,3 @@
-# The game of life
-
 *The game of life* es un modelo discreto de un automata celular, ideado por el matemático **John Horton Conway.**
 
 Este modelo se basa en unas pocas reglas que define el comportamiento de las “células” su comportamiento. Reglas:
@@ -11,11 +9,11 @@ Este modelo se basa en unas pocas reglas que define el comportamiento de las “
 
 ## Mockup
 
-![Untitled](https://i.ibb.co/fNNQ846/Untitled.png)
-
-
+![mockup](https://i.ibb.co/fNNQ846/Untitled.png)
 
 ## Lógica
+
+### Calcular el nuevo estado de la célula
 
 Si la célula está muerta, solo hay 1 forma de que reviva. Si la célula está viva …
 
@@ -38,21 +36,45 @@ Caso 2: La célula está viva.
 
 Diagrama de flujo para determinar el estado de la célula:
 
-![Untitled](https://i.ibb.co/jL3jNVJ/Diagrama-para-determinar-el-estado-de-la-celula.png)
+![cell_state](https://i.ibb.co/mN5zzm7/The-game-of-life-Conway-drawio.png)
 
 ### Contar vecinos
 
-pseudocódigo:
+Para poder actualizar el estado de la célula es necesario saber cuántos vecinos vivos adyacentes hay.
 
-1. Obtener la fila anterior y la fila siguiente.
-2. Obtener columna anterior y columna siguiente.
+Para el proyecto se optó por una **lista bidimensional como la estructura de datos**. Por lo que para saber cómo acomodar los índices para contar los vecinos. En la imagen se muestra una matriz de 3x3 de cómo se contarían los vecinos de la célula en el centro.
+
+![centro celula](https://i.ibb.co/my4rbnK/celula-lateral.png)
+
+Algo a tener en cuenta antes de continuar es que se decidido que cuando una célula esté en el borde del mapa, las células vecinas serán la que estén al lado opuesto, como se muestra en la imagen:
+
+![lateral](https://i.ibb.co/my4rbnK/celula-lateral.png)
+
+Pseudocódigo para contar los vecinos:
+
+1. Obtener el índice de la fila anterior y la fila siguiente.
+2. Obtener el índice de la columna anterior y columna siguiente.
 3. Contar las células vivas en la fila anterior.
-4. Contar las células vivas en la fila siguiente.
-5. Contar las células vivas en la fila actual.
+4. Contar las células vivas en la fila actual.
+5. Contar las células vivas en la fila siguiente.
 6. Retornar el total
 
-Diagrama de flujo para contar las células vecinas vivas:
+Diagrama de flujo para obtener los índices de las filas adyacentes.
 
 ![filas flow.png](https://i.ibb.co/CtLSg3W/filas-flow-1.png)
 
+Diagrama de flujo para obtener los índices de las columnas adyacentes.
+
 ![columnas flow.drawio.png](https://i.ibb.co/zb3Ymmv/columnas-flow-drawio-1.png)
+
+Diagrama de flujo para contar las células vecinas.
+
+![ContarVecinosR.drawio.png](https://i.ibb.co/x6YfNF0/Contar-Vecinos-R-drawio.png)
+
+El análisis y los diagramas de flujo solo se realizaron de lo más importante del proyecto, lo demás fue improvisado sobre la marcha 😋
+
+## Referencias
+
+[Juego de la vida - Wikipedia, la enciclopedia libre](https://es.wikipedia.org/wiki/Juego_de_la_vida)
+
+[Play John Conway's Game of Life](https://playgameoflife.com/info)

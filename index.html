@@ -142,16 +142,73 @@
 	<article id="documentation" class="info container">
 		<div class="markdown row mx-auto">
 			<div class="col">
-				<h1 class="code-line fs-1 mt-2 mb-2" data-line-start=10 data-line-end=11><a id="Titulo_1"></a>Titulo 1</h1>
-				<p class="has-line-data" data-line-start="1" data-line-end="2">Este juego no es un juego como tal. Fue creado por el matemático John conway.</p>
-				<p class="has-line-data" data-line-start="3" data-line-end="4">Reglas:</p>
-				<ul>
-					<li class="has-line-data" data-line-start="5" data-line-end="6">Todas las células se actualizan simultáneamente en cada turno.</li>
-					<li class="has-line-data" data-line-start="6" data-line-end="7">Una célula muerta con exactamente 3 células vecinas vivas “nace”.</li>
-					<li class="has-line-data" data-line-start="7" data-line-end="8">Una célula viva con 1 o ningún vecino muere.</li>
-					<li class="has-line-data" data-line-start="8" data-line-end="10">Una célula viva con 4 o más células vivas vecinas muere.</li>
-				</ul>
-				<h2 class="code-line fs-2 mt-2" data-line-start=10 data-line-end=11><a id="Titulo_2"></a>Titulo 2</h2>
+<p><em>The game of life</em> es un modelo discreto de un automata celular, ideado por el matemático <strong>John Horton Conway.</strong></p>
+<p>Este modelo se basa en unas pocas reglas que define el comportamiento de las “células” su comportamiento. Reglas:</p>
+<ul>
+<li>Todas las células se actualizan simultáneamente en cada turno.</li>
+<li>Una célula muerta con exactamente 3 células vecinas vivas “nace”.</li>
+<li>Una célula viva con 1 o ningún vecino muere.</li>
+<li>Una célula viva con 4 o más células vivas vecinas muere.</li>
+</ul>
+<h2>Mockup</h2>
+<p><img src="https://i.ibb.co/fNNQ846/Untitled.png" alt="mockup" /></p>
+<h2>Lógica</h2>
+<h3>Calcular el nuevo estado de la célula</h3>
+<p>Si la célula está muerta, solo hay 1 forma de que reviva. Si la célula está viva …</p>
+<p>Caso 1: La célula está muerta.</p>
+<ol>
+<li>Cuenta cuantas células vecinas están vivas.</li>
+<li>¿El contador es igual a 3?
+<ol>
+<li>Sí → La célula revive.</li>
+<li>No → Continua con la siguiente célula.</li>
+</ol>
+</li>
+</ol>
+<p>Caso 2: La célula está viva.</p>
+<ol>
+<li>Contar el número de células vecinas vivas.</li>
+<li>¿El contador es menor o igual a 1?
+<ol>
+<li>Sí → La célula muere.</li>
+<li>No → Revisa la otra condición</li>
+</ol>
+</li>
+<li>¿El contador es mayor o igual a 4?
+<ol>
+<li>Sí → La célula muere</li>
+<li>No → La célula se mantiene viva.</li>
+</ol>
+</li>
+</ol>
+<p>Diagrama de flujo para determinar el estado de la célula:</p>
+<p><img src="https://i.ibb.co/mN5zzm7/The-game-of-life-Conway-drawio.png" alt="cell_state" /></p>
+<h3>Contar vecinos</h3>
+<p>Para poder actualizar el estado de la célula es necesario saber cuántos vecinos vivos adyacentes hay.</p>
+<p>Para el proyecto se optó por una <strong>lista bidimensional como la estructura de datos</strong>. Por lo que para saber cómo acomodar los índices para contar los vecinos. En la imagen se muestra una matriz de 3x3 de cómo se contarían los vecinos de la célula en el centro.</p>
+<p><img src="https://i.ibb.co/my4rbnK/celula-lateral.png" alt="centro celula" /></p>
+<p>Algo a tener en cuenta antes de continuar es que se decidido que cuando una célula esté en el borde del mapa, las células vecinas serán la que estén al lado opuesto, como se muestra en la imagen:</p>
+<p><img src="https://i.ibb.co/my4rbnK/celula-lateral.png" alt="lateral" /></p>
+<p>Pseudocódigo para contar los vecinos:</p>
+<ol>
+<li>Obtener el índice de la fila anterior y la fila siguiente.</li>
+<li>Obtener el índice de la columna anterior y columna siguiente.</li>
+<li>Contar las células vivas en la fila anterior.</li>
+<li>Contar las células vivas en la fila actual.</li>
+<li>Contar las células vivas en la fila siguiente.</li>
+<li>Retornar el total</li>
+</ol>
+<p>Diagrama de flujo para obtener los índices de las filas adyacentes.</p>
+<p><img src="https://i.ibb.co/CtLSg3W/filas-flow-1.png" alt="filas flow.png" /></p>
+<p>Diagrama de flujo para obtener los índices de las columnas adyacentes.</p>
+<p><img src="https://i.ibb.co/zb3Ymmv/columnas-flow-drawio-1.png" alt="columnas flow.drawio.png" /></p>
+<p>Diagrama de flujo para contar las células vecinas.</p>
+<p><img src="https://i.ibb.co/x6YfNF0/Contar-Vecinos-R-drawio.png" alt="ContarVecinosR.drawio.png" /></p>
+<p>El análisis y los diagramas de flujo solo se realizaron de lo más importante del proyecto, lo demás fue improvisado sobre la marcha 😋</p>
+<h2>Referencias</h2>
+<p><a href="https://es.wikipedia.org/wiki/Juego_de_la_vida">Juego de la vida - Wikipedia, la enciclopedia libre</a></p>
+<p><a href="https://playgameoflife.com/info">Play John Conway's Game of Life</a></p>
+
 			</div>
 		</div>
 	</article>
