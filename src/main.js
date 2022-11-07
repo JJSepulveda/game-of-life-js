@@ -208,6 +208,9 @@ function neighbours_count(rowIndex, columnIndex){
 		return acumulator;
 	}, 0)
 
+	// element = document.getElementById(`${rowIndex}-${columnIndex}`)
+	// element.innerHTML = '' + counter
+
 	return counter
 }
 

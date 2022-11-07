@@ -30,7 +30,9 @@
 					<a href="#" class="btn btn-outline-secondary" id="erase-btn"><i class='bx bxs-eraser' ></i></a>
 					<button class="buttons__play-button btn btn-outline-primary"><i class='bx bx-play-circle bx-md'></i></button>
 					<button class="buttons__stop-button btn btn-outline-primary" hidden><i class='bx bx-stop-circle bx-md'></i></button>
-					<a href="#" class="btn btn-outline-secondary">?</a>
+					<button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#helpModal">
+						?
+					</button>
 					<button type="button" class="btn btn-outline-secondary examples-menu-button" data-bs-toggle="modal" data-bs-target="#exampleModal">
   						<i class='bx bx-menu'></i>
 					</button>
@@ -56,15 +58,52 @@
 			</section>
 		</section>
 
-<!-- Button trigger modal -->
+<!-- Modal help button -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content backgroud-background">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Información sobre el juego</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      	<div class="row">
+      		<div class="col">
+      			<p class="mb-2">	
+      				Una célula muerta con exactamente 3 células vecinas vivas “nace”.
+      			</p>
+      			<img class="mb-4" src="https://i.ibb.co/5nzBtsw/ejemplo1.png" title="ejemplo 1">
+      		</div>
+      	</div>
+      	<div class="row">
+      		<div class="col">
+      			<p class="mb-2">Una célula viva con 1 o ningún vecino muere.</p>
+      			<img class="mb-4" src="https://i.ibb.co/w7cpTGp/ejemplo2.png" title="ejemplo 2">
+      		</div>
+      	</div>
+      	<div class="row">
+      		<div class="col">
+      			<p class="mb-2">
+      				Una célula viva con 4 o más células vivas vecinas muere.
+      			</p>
+      			<img class="mb-4" src="https://i.ibb.co/CsdMgT5/ejemplo3.png" title="ejemplo 3">
+      		</div>
+      	</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
-<!-- Modal -->
+<!-- Modal lateral menu-->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content backgroud-background">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Algunos patrones que puedes probar.</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Algunos patrones que puedes probar</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
