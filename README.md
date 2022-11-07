@@ -44,7 +44,7 @@ Para poder actualizar el estado de la célula es necesario saber cuántos vecino
 
 Para el proyecto se optó por una **lista bidimensional como la estructura de datos**. Por lo que para saber cómo acomodar los índices para contar los vecinos. En la imagen se muestra una matriz de 3x3 de cómo se contarían los vecinos de la célula en el centro.
 
-![centro celula](https://i.ibb.co/my4rbnK/celula-lateral.png)
+![centro celula](https://i.ibb.co/KqR5FnL/celula-centro.png)
 
 Algo a tener en cuenta antes de continuar es que se decidido que cuando una célula esté en el borde del mapa, las células vecinas serán la que estén al lado opuesto, como se muestra en la imagen:
 
